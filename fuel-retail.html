@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bespat Retail Fuel — Engen Service Stations | Bespat Holdings</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,600&family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+    <style>
+        /* ── RESET ── */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --gold: #C9972E;
+            --gold-light: #e0c06a;
+            --gold-glow: rgba(201, 151, 46, 0.2);
+            --dark: #0a0a0a;
+            --dark-surface: #111111;
+            --dark-card: #161616;
+            --dark-border: #2a2a2a;
+            --bone: #f5f0eb;
+            --bone-muted: #c5bfb8;
+            --muted: #8a8580;
+            --muted-light: rgba(255, 255, 255, 0.7);
+            --font-display: 'Fraunces', serif;
+            --font-body: 'Inter', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+            --acc-fuel: #D68A2C;
+        }
+
+        body {
+            background: var(--dark);
+            color: var(--bone);
+            font-family: var(--font-body);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* ── TYPOGRAPHY ── */
+        .eyebrow {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--gold);
+            display: block;
+            margin-bottom: 0.8rem;
+            font-weight: 400;
+        }
+
+        .sec-title {
+            font-family: var(--font-display);
+            font-weight: 600;
+            font-size: clamp(2rem, 4vw, 3.2rem);
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+        }
+        .sec-title em {
+            color: var(--gold);
+            font-style: italic;
+        }
+
+        .sec-sub {
+            color: var(--muted);
+            font-size: 1rem;
+            max-width: 600px;
+            margin-top: 0.5rem;
+        }
+
+        .sec {
+            padding: 5rem 0;
+        }
+
+        .sec-header {
+            margin-bottom: 3rem;
+        }
+        .sec-header.center {
+            text-align: center;
+        }
+        .sec-header.center .sec-sub {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .divider {
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--dark-border), transparent);
+            margin: 0 2rem;
+        }
+
+        /* ── BUTTONS ── */
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 2.2rem;
+            border-radius: 60px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            text-decoration: none;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            letter-spacing: 0.03em;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-gold {
+            background: var(--gold);
+            color: var(--dark);
+        }
+        .btn-gold:hover {
+            background: var(--gold-light);
+            transform: translateY(-3px);
+            box-shadow: 0 16px 48px rgba(201, 151, 46, 0.35);
+        }
+
+        .btn-outline-light {
+            background: transparent;
+            color: var(--bone);
+            border: 1.5px solid rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(4px);
+        }
+        .btn-outline-light:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: var(--gold);
+            color: var(--gold);
+            transform: translateY(-3px);
+        }
+
+        .btn-primary {
+            background: var(--gold);
+            color: var(--dark);
+        }
+        .btn-primary:hover {
+            background: var(--gold-light);
+            transform: translateY(-3px);
+            box-shadow: 0 16px 48px rgba(201, 151, 46, 0.3);
+        }
+
+        /* ── NAV ── SLIGHTLY DARKER HEADER ── */
+        .site-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.8rem 2rem;
+            background: rgba(10, 10, 10, 0.55);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            transition: background 0.3s ease;
+        }
+        .site-nav.scrolled {
+            background: rgba(10, 10, 10, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            text-decoration: none;
+            color: var(--bone);
+            flex-shrink: 0;
+        }
+        .nav-logo img {
+            height: 40px;
+            width: auto;
+            object-fit: contain;
+        }
+        .nav-logo-text {
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 1.2rem;
+            letter-spacing: -0.02em;
+        }
+        .nav-logo-text span {
+            font-weight: 300;
+            color: var(--bone-muted);
+        }
+
+        .nav-hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 5px;
+            z-index: 1001;
+        }
+        .nav-hamburger span {
+            display: block;
+            width: 28px;
+            height: 2px;
+            background: var(--bone);
+            transition: all 0.3s ease;
+            border-radius: 2px;
+        }
+        .nav-hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+        .nav-hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+        .nav-hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.8rem;
+            list-style: none;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+        .nav-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 0.06em;
+            transition: 0.3s;
+            border-bottom: 2px solid transparent;
+            padding-bottom: 0.25rem;
+            white-space: nowrap;
+        }
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--bone);
+            border-bottom-color: var(--gold);
+        }
+        .nav-cta {
+            background: linear-gradient(135deg, var(--gold), var(--gold-light));
+            color: var(--dark);
+            padding: 0.4rem 1.4rem;
+            border-radius: 40px;
+            font-weight: 700;
+            font-size: 0.7rem;
+            text-decoration: none;
+            transition: 0.3s;
+            letter-spacing: 0.05em;
+            box-shadow: 0 4px 20px rgba(201, 151, 46, 0.2);
+            white-space: nowrap;
+        }
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 32px rgba(201, 151, 46, 0.35);
+        }
+
+        /* ── MOBILE NAV TOGGLE ── */
+        @media (max-width: 768px) {
+            .nav-hamburger {
+                display: flex;
+            }
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 280px;
+                height: 100vh;
+                background: rgba(10, 10, 10, 0.98);
+                backdrop-filter: blur(20px);
+                -webkit-backdrop-filter: blur(20px);
+                flex-direction: column;
+                padding: 5rem 2rem 2rem;
+                gap: 1.5rem;
+                align-items: flex-start;
+                transition: right 0.3s ease;
+                border-left: 1px solid rgba(255, 255, 255, 0.05);
+            }
+            .nav-links.open {
+                right: 0;
+            }
+            .nav-links a {
+                font-size: 1rem;
+                white-space: normal;
+            }
+            .nav-cta {
+                align-self: flex-start;
+                font-size: 0.85rem;
+                padding: 0.6rem 2rem;
+            }
+            .site-nav {
+                padding: 0.6rem 1.2rem;
+            }
+            .nav-logo img {
+                height: 32px;
+            }
+            .nav-logo-text {
+                font-size: 1rem;
+            }
+        }
+
+        /* ── PAGE HERO ── */
+        .page-hero {
+            position: relative;
+            min-height: 75vh;
+            display: flex;
+            align-items: center;
+            padding: 8rem 3rem 4rem;
+            overflow: hidden;
+            background: var(--dark);
+        }
+
+        .page-hero-bg {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            background-image: url('fuel-station.png');
+            background-size: cover;
+            background-position: center 40%;
+            background-repeat: no-repeat;
+        }
+        .page-hero-bg::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg,
+                    rgba(10, 10, 10, 0.25) 0%,
+                    rgba(10, 10, 10, 0.1) 50%,
+                    rgba(10, 10, 10, 0.35) 100%);
+        }
+
+        .page-hero .gold-accent {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(201, 151, 46, 0.08) 0%, transparent 70%);
+            top: -200px;
+            right: -150px;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .page-hero-inner {
+            position: relative;
+            z-index: 2;
+            max-width: 860px;
+        }
+
+        .page-hero h1 {
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: clamp(2.8rem, 6vw, 4.8rem);
+            line-height: 1.0;
+            letter-spacing: -0.02em;
+            color: var(--bone);
+            text-shadow: 0 4px 60px rgba(0, 0, 0, 0.3);
+        }
+        .page-hero h1 em {
+            color: var(--gold);
+            font-style: italic;
+            font-weight: 600;
+        }
+
+        .page-hero p.lead {
+            font-size: 1.15rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-top: 1.5rem;
+            max-width: 620px;
+            line-height: 1.8;
+            text-shadow: 0 2px 30px rgba(0, 0, 0, 0.2);
+            font-weight: 400;
+        }
+
+        .page-hero-btns {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2.5rem;
+            flex-wrap: wrap;
+        }
+
+        /* ── STATS BAR ── */
+        .stats-bar {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            max-width: 1240px;
+            margin: 0 auto;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            padding: 1.8rem 2.5rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+        .stat-num {
+            font-family: var(--font-mono);
+            font-size: 2.4rem;
+            font-weight: 600;
+            color: var(--gold);
+            letter-spacing: -0.02em;
+            text-shadow: 0 0 40px rgba(201, 151, 46, 0.2);
+        }
+        .stat-label {
+            font-size: 0.78rem;
+            color: rgba(255, 255, 255, 0.6);
+            font-weight: 400;
+            letter-spacing: 0.04em;
+            margin-top: 0.1rem;
+        }
+
+        /* ── ABOUT ── */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            max-width: 1240px;
+            margin: 0 auto;
+        }
+        .about-body p {
+            font-size: 0.96rem;
+            color: var(--bone-muted);
+            line-height: 1.85;
+            margin-bottom: 1rem;
+        }
+        .about-img-wrap {
+            aspect-ratio: 4/3.2;
+            background: var(--dark-card);
+            border-radius: 20px;
+            border: 1px solid var(--dark-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            color: var(--muted);
+            font-size: 0.85rem;
+            gap: 0.6rem;
+            background-image: url('fuel-station.png');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .about-img-wrap::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(10, 10, 10, 0.3), rgba(10, 10, 10, 0.05));
+            border-radius: 20px;
+        }
+        .about-img-wrap .ph-icon {
+            font-size: 3rem;
+            color: var(--gold);
+            opacity: 0.3;
+            z-index: 1;
+        }
+        .about-img-wrap span {
+            z-index: 1;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 0.3rem 1.2rem;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            color: var(--bone-muted);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* ── STATION GRID ── */
+        .station-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.6rem;
+            max-width: 1240px;
+            margin: 0 auto;
+        }
+        .station-card {
+            background: var(--dark-card);
+            border: 1px solid var(--dark-border);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .station-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--acc-fuel);
+            box-shadow: 0 32px 64px rgba(0, 0, 0, 0.4);
+        }
+        .station-card .station-img {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+        .station-card .station-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.5s;
+        }
+        .station-card:hover .station-img img {
+            transform: scale(1.05);
+        }
+        .station-body {
+            padding: 1.6rem 1.8rem 1.8rem;
+        }
+        .station-body .tag {
+            font-family: var(--font-mono);
+            font-size: 0.62rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--acc-fuel);
+            font-weight: 700;
+        }
+        .station-body h3 {
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            color: var(--bone);
+            margin: 0.4rem 0 0.6rem;
+        }
+        .station-body p {
+            font-size: 0.85rem;
+            color: var(--muted);
+            line-height: 1.6;
+        }
+
+        /* ── SAFETY SECTION WITH BACKGROUND ── */
+        .safety-section {
+            position: relative;
+            padding: 5rem 0;
+            overflow: hidden;
+            border-top: 1px solid var(--dark-border);
+            border-bottom: 1px solid var(--dark-border);
+        }
+        .safety-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            background-image: url('fuel-station.png');
+            background-size: cover;
+            background-position: center 50%;
+            background-repeat: no-repeat;
+            opacity: 0.08;
+            transform: scale(1.05);
+        }
+        .safety-section::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            background: linear-gradient(180deg, 
+                rgba(17, 17, 17, 0.92) 0%,
+                rgba(17, 17, 17, 0.85) 50%,
+                rgba(17, 17, 17, 0.92) 100%);
+        }
+        .safety-section .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .safety-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.6rem;
+            max-width: 1240px;
+            margin: 0 auto;
+        }
+        .safety-card {
+            background: rgba(22, 22, 22, 0.85);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 20px;
+            padding: 2.2rem 2rem;
+            transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .safety-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--acc-fuel);
+            background: rgba(30, 30, 30, 0.9);
+            box-shadow: 0 24px 48px rgba(0, 0, 0, 0.3);
+        }
+        .safety-card i {
+            color: var(--acc-fuel);
+            font-size: 1.5rem;
+            margin-bottom: 0.9rem;
+            display: block;
+        }
+        .safety-card h3 {
+            font-family: var(--font-display);
+            font-size: 1.15rem;
+            color: var(--bone);
+            margin-bottom: 0.6rem;
+        }
+        .safety-card p {
+            font-size: 0.85rem;
+            color: var(--muted);
+            line-height: 1.65;
+        }
+
+        /* ── CTA ── */
+        .cta-band {
+            background: var(--dark-card);
+            border-top: 1px solid var(--dark-border);
+            border-bottom: 1px solid var(--dark-border);
+            text-align: center;
+            padding: 5rem 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .cta-band::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at center, rgba(201, 151, 46, 0.06) 0%, transparent 60%);
+        }
+        .cta-band h2 {
+            font-family: var(--font-display);
+            font-weight: 600;
+            font-size: clamp(2rem, 4.6vw, 3.2rem);
+            position: relative;
+            z-index: 1;
+        }
+        .cta-band h2 em {
+            color: var(--gold);
+            font-style: italic;
+        }
+        .cta-band p {
+            color: var(--muted);
+            margin: 1rem 0 2rem;
+            position: relative;
+            z-index: 1;
+        }
+        .cta-band .page-hero-btns {
+            justify-content: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ── FOOTER ── */
+        .site-footer {
+            background: var(--dark);
+            border-top: 1px solid var(--dark-border);
+            padding: 3rem 2rem 1.5rem;
+        }
+        .footer-grid {
+            max-width: 1240px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
+        }
+        .footer-brand .fb-logo {
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+        .footer-brand .fb-logo span {
+            color: var(--gold);
+        }
+        .footer-brand .fb-tag {
+            color: var(--muted);
+            font-size: 0.85rem;
+            max-width: 300px;
+            margin: 0.6rem 0 1rem;
+        }
+        .footer-brand .fb-addr {
+            color: var(--bone-muted);
+            font-size: 0.8rem;
+            line-height: 1.8;
+        }
+        .footer-col h4 {
+            font-family: var(--font-display);
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            color: var(--bone);
+        }
+        .footer-col a {
+            display: block;
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 0.85rem;
+            padding: 0.3rem 0;
+            transition: 0.3s;
+        }
+        .footer-col a:hover {
+            color: var(--gold);
+            padding-left: 0.3rem;
+        }
+        .footer-bottom {
+            max-width: 1240px;
+            margin: 2rem auto 0;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--dark-border);
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.75rem;
+            color: var(--muted);
+        }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 980px) {
+            .station-grid {
+                grid-template-columns: 1fr;
+                max-width: 500px;
+            }
+            .safety-grid {
+                grid-template-columns: 1fr;
+            }
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 2.2rem;
+            }
+            .stats-bar {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem;
+                padding: 1.2rem 1.8rem;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 2rem;
+            }
+            .page-hero {
+                padding: 7rem 1.5rem 3rem;
+                min-height: 60vh;
+            }
+        }
+        @media (max-width: 640px) {
+            .station-grid {
+                grid-template-columns: 1fr;
+            }
+            .safety-grid {
+                grid-template-columns: 1fr;
+            }
+            .stats-bar {
+                grid-template-columns: 1fr 1fr;
+                gap: 1rem;
+                padding: 1rem;
+            }
+            .stat-num {
+                font-size: 1.8rem;
+            }
+            .page-hero {
+                padding: 6rem 1.2rem 2rem;
+                min-height: 50vh;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            .footer-bottom {
+                flex-direction: column;
+                gap: 0.5rem;
+                text-align: center;
+            }
+            .station-card .station-img {
+                height: 150px;
+            }
+            .page-hero h1 {
+                font-size: 2.2rem;
+            }
+            .page-hero p.lead {
+                font-size: 0.95rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ══ NAV ══ -->
+    <nav class="site-nav" id="siteNav">
+        <a class="nav-logo" href="index.html">
+            <img src="HUMAN logo.png" alt="Bespat Holdings Logo" />
+            <div class="nav-logo-text">BESPAT <span>HOLDINGS</span></div>
+        </a>
+
+        <button class="nav-hamburger" id="hamburger" aria-label="Toggle navigation">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="construction.html">Construction</a></li>
+            <li><a href="human-capital.html">Human Capital</a></li>
+            <li><a href="logistics.html">Logistics</a></li>
+            <li><a href="fuel-retail.html" class="active">Fuel Retail</a></li>
+            <li><a href="distribution.html">Distribution</a></li>
+            <li><a href="agri-trade.html">Agri-Trade &amp; Farms</a></li>
+            <li><a class="nav-cta" href="contact-group.html">Contact Group</a></li>
+        </ul>
+    </nav>
+
+    <!-- ══ PAGE HERO ══ -->
+    <header class="page-hero">
+        <div class="page-hero-bg"></div>
+        <div class="gold-accent"></div>
+        <div class="page-hero-inner">
+            <span class="eyebrow">Division 04 · Engen Network Partner</span>
+            <h1>Bespat <em>Retail Fuel</em></h1>
+            <p class="lead">Driven by integrity, efficiency, and customer trust, Bespat Retail Fuel plays a vital role in supporting transport systems, enabling trade, and contributing to sustainable national development.</p>
+            <div class="page-hero-btns">
+                <a class="btn btn-gold" href="tel:+265999510524"><i class="fa-solid fa-phone"></i> Call: +265 999 510 524</a>
+                <a class="btn btn-outline-light" href="mailto:bespatconstructionco@gmail.com"><i class="fa-solid fa-envelope"></i> Email Us</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="divider"></div>
+
+    <!-- ══ STATS ══ -->
+    <section class="sec" style="background: var(--dark); padding-top: 3rem; padding-bottom: 3rem;">
+        <div class="container" style="max-width:1280px;margin:0 auto;padding:0 2rem;">
+            <div class="stats-bar">
+                <div><div class="stat-num">3</div><div class="stat-label">Service Stations</div></div>
+                <div><div class="stat-num">12+</div><div class="stat-label">Years Operating</div></div>
+                <div><div class="stat-num">MK 9B</div><div class="stat-label">Combined Annual Turnover</div></div>
+                <div><div class="stat-num">Engen</div><div class="stat-label">Branded Network Partner</div></div>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ══ ABOUT ══ -->
+    <section class="sec" style="background: var(--dark-surface); border-top: 1px solid var(--dark-border); border-bottom: 1px solid var(--dark-border);">
+        <div class="container" style="max-width:1280px;margin:0 auto;padding:0 2rem;">
+            <div class="about-grid">
+                <div class="about-body">
+                    <span class="eyebrow">Who We Are</span>
+                    <h2 class="sec-title" style="margin-bottom:1.1rem">Energy that keeps Malawi <em>moving.</em></h2>
+                    <p>Within its energy and petroleum division, Bespat Holdings has established a well-structured Fuel Retail Network operating under the internationally recognised Engen brand — reflecting our commitment to quality fuel standards, safe operations, and consistent customer service.</p>
+                    <p>With over 12 years of operational experience, we've developed strong internal systems in station management, fuel stock control, safety compliance, and supply chain coordination, enabling consistent service delivery and sustained business growth.</p>
+                    <a class="btn btn-primary" href="contact-group.html" style="margin-top:0.8rem">Speak to the Fuel Team</a>
+                </div>
+                <div class="about-img-wrap">
+                    <i class="fa-solid fa-gas-pump ph-icon"></i>
+                    <span>Bespat Fuel · Engen Network</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ══ STATIONS ══ -->
+    <section class="sec" style="background: var(--dark);">
+        <div class="container" style="max-width:1280px;margin:0 auto;padding:0 2rem;">
+            <div class="sec-header center">
+                <span class="eyebrow">Our Network</span>
+                <h2 class="sec-title">Three stations, <em>three roles.</em></h2>
+                <p class="sec-sub" style="margin-left:auto;margin-right:auto;">Strategically located to serve urban commuters, transit operators, and rural communities.</p>
+            </div>
+            <div class="station-grid">
+                <div class="station-card">
+                    <div class="station-img">
+                        <img src="fuel-station.png" alt="Kawale Service Station" />
+                    </div>
+                    <div class="station-body">
+                        <span class="tag">Urban Demand Hub</span>
+                        <h3>Kawale Service Station</h3>
+                        <p>Positioned in a high-density urban environment, serving private motorists, public transport operators, and SMEs with high-volume daily demand.</p>
+                    </div>
+                </div>
+                <div class="station-card">
+                    <div class="station-img">
+                        <img src="fuel-station.png" alt="Jenda Service Station" />
+                    </div>
+                    <div class="station-body">
+                        <span class="tag">Strategic Transit Corridor</span>
+                        <h3>Jenda Service Station</h3>
+                        <p>A critical refuelling point along a key transport route for long-distance travellers, freight, and agricultural logistics operators.</p>
+                    </div>
+                </div>
+                <div class="station-card">
+                    <div class="station-img">
+                        <img src="fuel-station.png" alt="Champhira Service Station" />
+                    </div>
+                    <div class="station-body">
+                        <span class="tag">Rural Linkage Point</span>
+                        <h3>Champhira Service Station</h3>
+                        <p>Bridges rural communities and major transport routes, providing essential fuel access to agricultural producers and rural motorists.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ══ SAFETY & QUALITY WITH BACKGROUND ══ -->
+    <section class="safety-section">
+        <div class="container" style="max-width:1280px;margin:0 auto;padding:0 2rem;">
+            <div class="sec-header center">
+                <span class="eyebrow">Safety &amp; Quality Assurance</span>
+                <h2 class="sec-title">Compliance isn't <em>optional here.</em></h2>
+                <p class="sec-sub" style="margin-left:auto;margin-right:auto;color:var(--bone-muted);">We maintain the highest standards of safety, compliance, and quality across all our operations.</p>
+            </div>
+            <div class="safety-grid">
+                <div class="safety-card">
+                    <i class="fa-solid fa-helmet-safety"></i>
+                    <h3>Strict HSE Protocols</h3>
+                    <p>Health, Safety, and Environmental protocols enforced across all operations to protect customers, employees, and infrastructure.</p>
+                </div>
+                <div class="safety-card">
+                    <i class="fa-solid fa-screwdriver-wrench"></i>
+                    <h3>Equipment Inspections</h3>
+                    <p>Structured, routine inspection and maintenance schedules for all fuelling equipment and storage systems.</p>
+                </div>
+                <div class="safety-card">
+                    <i class="fa-solid fa-fire-extinguisher"></i>
+                    <h3>Emergency Response Training</h3>
+                    <p>Continuous staff training in fire safety, spill management, and safe fuel handling procedures.</p>
+                </div>
+                <div class="safety-card">
+                    <i class="fa-solid fa-clipboard-check"></i>
+                    <h3>Regulatory Compliance</h3>
+                    <p>Full compliance with the Energy Regulatory Authority — licensing, inspection protocols, and reporting obligations.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══ CTA ══ -->
+    <div class="cta-band">
+        <h2>Fuel your fleet with <em>a name you can trust.</em></h2>
+        <p>Find us at Kawale, Jenda, or Champhira — or reach out for bulk and commercial fuel enquiries.</p>
+        <div class="page-hero-btns">
+            <a class="btn btn-gold" href="tel:+265999510524"><i class="fa-solid fa-phone"></i> Call +265 999 510 524</a>
+            <a class="btn btn-outline-light" href="mailto:bespatconstructionco@gmail.com"><i class="fa-solid fa-envelope"></i> Email Us</a>
+        </div>
+    </div>
+
+    <!-- ══ FOOTER ══ -->
+    <footer class="site-footer">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <div class="fb-logo">BESPAT <span>HOLDINGS</span></div>
+                <p class="fb-tag">A diversified Malawian group across construction, human capital, logistics, fuel, distribution and agriculture.</p>
+                <p class="fb-addr">Off Chidzanja Road, Plot No. 07/X103B<br>Engen Service Station, Kawale One<br>Lilongwe, Malawi</p>
+            </div>
+            <div class="footer-col">
+                <h4>Divisions</h4>
+                <a href="construction.html">Construction</a>
+                <a href="human-capital.html">Human Capital</a>
+                <a href="logistics.html">Logistics</a>
+            </div>
+            <div class="footer-col">
+                <h4>More Divisions</h4>
+                <a href="fuel-retail.html">Fuel Retail</a>
+                <a href="distribution.html">Castel Distribution</a>
+                <a href="agri-trade.html">Agri-Trade &amp; Farms</a>
+            </div>
+            <div class="footer-col">
+                <h4>This Division</h4>
+                <a href="tel:+265999510524"><i class="fa-solid fa-phone"></i> +265 999 510 524</a>
+                <a href="mailto:bespatconstructionco@gmail.com"><i class="fa-solid fa-envelope"></i> bespatconstructionco@gmail.com</a>
+                <a href="contact-group.html">Group Contact →</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>© 2026 Bespat Holdings Limited.</span>
+            <span>Bespat Retail Fuel · Engen Network Partner</span>
+        </div>
+    </footer>
+
+    <script>
+        // ── HAMBURGER MENU TOGGLE ──
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+
+        hamburger.addEventListener('click', function() {
+            this.classList.toggle('active');
+            navLinks.classList.toggle('open');
+        });
+
+        // Close menu when a link is clicked
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('open');
+            });
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.site-nav')) {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('open');
+            }
+        });
+
+        // ── SCROLL EFFECT FOR HEADER ──
+        window.addEventListener('scroll', function() {
+            const nav = document.getElementById('siteNav');
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
+</html>
