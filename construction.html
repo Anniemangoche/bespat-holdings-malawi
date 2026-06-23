@@ -28,9 +28,9 @@
             --bone-muted: #c5bfb8;
             --muted: #8a8580;
             --muted-light: rgba(255, 255, 255, 0.7);
-            --font-display: 'Fraunces', serif;
-            --font-body: 'Inter', sans-serif;
-            --font-mono: 'JetBrains Mono', monospace;
+            --font-display: Arial, sans-serif;
+            --font-body: Arial, sans-serif;
+            --font-mono: Arial, sans-serif;
             --acc-construction: #C9972E;
         }
 
@@ -486,7 +486,7 @@
             border: 1px solid rgba(255, 255, 255, 0.05);
         }
 
-        /* ── SERVICES GRID ── */
+        /* ── SERVICES GRID ── FIXED RESPONSIVE ── */
         .services-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -553,6 +553,27 @@
             margin-bottom: 0.8rem;
             opacity: 0.6;
         }
+        .service-card.full-width {
+            grid-column: span 3;
+        }
+
+        @media (max-width: 980px) {
+            .services-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .service-card.full-width {
+                grid-column: span 2;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            .service-card.full-width {
+                grid-column: span 1;
+            }
+        }
 
         /* ── CORE VALUES ── */
         .values-grid {
@@ -598,6 +619,17 @@
             font-size: 0.82rem;
             color: var(--muted);
             line-height: 1.6;
+        }
+
+        @media (max-width: 980px) {
+            .values-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        @media (max-width: 640px) {
+            .values-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
         /* ── TEAM GRID ── */
@@ -648,6 +680,17 @@
             font-weight: 600;
         }
 
+        @media (max-width: 980px) {
+            .team-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        @media (max-width: 640px) {
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
         /* ── EQUIPMENT GRID ── */
         .equip-grid {
             display: grid;
@@ -680,6 +723,17 @@
             padding: 0.2rem 0.8rem;
             background: rgba(95, 122, 62, 0.15);
             border-radius: 20px;
+        }
+
+        @media (max-width: 980px) {
+            .equip-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        @media (max-width: 640px) {
+            .equip-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
         /* ── PROJECTS SECTION ── */
@@ -841,6 +895,33 @@
             opacity: 1;
         }
 
+        @media (max-width: 980px) {
+            .projects-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 1.5rem;
+            }
+        }
+        @media (max-width: 640px) {
+            .projects-grid {
+                grid-template-columns: 1fr;
+                gap: 1.2rem;
+                padding: 0 1rem;
+            }
+            .project-card {
+                padding: 1.4rem 1.2rem;
+            }
+            .project-card .client-logo-lg {
+                height: 34px;
+                max-width: 65px;
+            }
+            .project-card .project-amount {
+                font-size: 0.85rem;
+            }
+            .project-card h4 {
+                font-size: 0.95rem;
+            }
+        }
+
         /* ── CERTIFICATIONS ── */
         .cert-row {
             display: flex;
@@ -869,6 +950,16 @@
         }
         .cert-chip i {
             color: var(--gold);
+        }
+
+        @media (max-width: 640px) {
+            .cert-row {
+                gap: 0.5rem;
+            }
+            .cert-chip {
+                font-size: 0.7rem;
+                padding: 0.5rem 1rem;
+            }
         }
 
         /* ── CTA ── */
@@ -971,20 +1062,26 @@
             color: var(--muted);
         }
 
-        /* ── RESPONSIVE ── */
         @media (max-width: 980px) {
-            .services-grid {
+            .footer-grid {
                 grid-template-columns: 1fr 1fr;
+                gap: 2rem;
             }
-            .team-grid {
-                grid-template-columns: 1fr 1fr;
+        }
+        @media (max-width: 640px) {
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
             }
-            .equip-grid {
-                grid-template-columns: 1fr 1fr;
+            .footer-bottom {
+                flex-direction: column;
+                gap: 0.5rem;
+                text-align: center;
             }
-            .values-grid {
-                grid-template-columns: 1fr 1fr;
-            }
+        }
+
+        /* ── RESPONSIVE GLOBAL ── */
+        @media (max-width: 980px) {
             .stats-bar {
                 grid-template-columns: repeat(2, 1fr);
                 gap: 1.5rem;
@@ -994,32 +1091,12 @@
                 grid-template-columns: 1fr;
                 gap: 2.2rem;
             }
-            .footer-grid {
-                grid-template-columns: 1fr 1fr;
-                gap: 2rem;
-            }
             .page-hero {
                 padding: 7rem 1.5rem 3rem;
                 min-height: 60vh;
             }
-            .projects-grid {
-                grid-template-columns: 1fr 1fr;
-                gap: 1.5rem;
-            }
         }
         @media (max-width: 640px) {
-            .services-grid {
-                grid-template-columns: 1fr;
-            }
-            .team-grid {
-                grid-template-columns: 1fr;
-            }
-            .equip-grid {
-                grid-template-columns: 1fr;
-            }
-            .values-grid {
-                grid-template-columns: 1fr;
-            }
             .stats-bar {
                 grid-template-columns: 1fr 1fr;
                 gap: 1rem;
@@ -1032,38 +1109,10 @@
                 padding: 6rem 1.2rem 2rem;
                 min-height: 50vh;
             }
-            .footer-grid {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
+            .page-hero h1 {
+                font-size: 2.2rem;
             }
-            .footer-bottom {
-                flex-direction: column;
-                gap: 0.5rem;
-                text-align: center;
-            }
-            .cert-row {
-                gap: 0.5rem;
-            }
-            .cert-chip {
-                font-size: 0.7rem;
-                padding: 0.5rem 1rem;
-            }
-            .projects-grid {
-                grid-template-columns: 1fr;
-                gap: 1.2rem;
-                padding: 0 1rem;
-            }
-            .project-card {
-                padding: 1.4rem 1.2rem;
-            }
-            .project-card .client-logo-lg {
-                height: 34px;
-                max-width: 65px;
-            }
-            .project-card .project-amount {
-                font-size: 0.85rem;
-            }
-            .project-card h4 {
+            .page-hero p.lead {
                 font-size: 0.95rem;
             }
         }
@@ -1220,7 +1269,7 @@
                     <h3>Building Services &amp; Utility Installation</h3>
                     <p>Electrical wiring, water supply, sewage networks, and fire safety systems installed to Malawi OSHA and building code standards.</p>
                 </div>
-                <div class="service-card" style="grid-column: span 2;">
+                <div class="service-card full-width">
                     <span class="service-num">05</span>
                     <div class="service-icon"><i class="fa-solid fa-paint-roller"></i></div>
                     <h3>Finishing Works, Fit-Out &amp; Refurbishment</h3>
